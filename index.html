@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+  <link href='https://css.gg/facebook.css' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
   <title>Frontend Mentor | Ping coming soon page</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -15,20 +20,64 @@
   </style>
 </head>
 <body>
+  <main>
+    <img id="logo" src="./images/logo.svg" alt="ping logo">
+    <h1>We are launching <span class="font-700">soon!</span></h1>
+    <p>Subscribe and get notified</p>
 
-  We are launching soon!
+    <form id="emailForm" class="inputs">
+      <div class="emailSection">
+        <input id="email-input" type="email" aria-label="email" placeholder="Your email address...">
+        <p id="errorMsg">Please provide a valid email address</p>
+      </div>
+      <button type="submit">Notify Me</button>
+      
+    </form>
+    <img id="img-dashboard" src="./images/illustration-dashboard.png" alt="illustration of dashboard">
 
-  Subscribe and get notified
-
-  Notify Me
-
-  &copy; Copyright Ping. All rights reserved.
+  </main>
 
   <footer>
-    <p class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
-    </p>
+    <div>
+      <div class="socials-container">
+
+        <div class="icon-container"><i class="gg-facebook"></i></div>
+        <div class="icon-container"><i class="bi bi-twitter"></i></div>
+        <div class="icon-container"><i class="bi bi-instagram"></i></div>
+        
+      </div>
+      <p>&copy; Copyright Ping. All rights reserved.</p>
+    </div>
+    <div>
+      <p class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="https://alanacapcreates.com">AlanaCapCreates</a>.
+      </p>
+    </div>
   </footer>
+
+  <script>
+
+let subscribeForm = document.getElementById('emailForm')
+let errorMsg = document.getElementById('errorMsg')
+let emailInput = document.getElementById('email-input')
+
+console.log(subscribeForm)
+
+
+subscribeForm.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    if(emailInput.value=="" || !(validator.isEmail(emailInput.value))){
+        emailInput.classList.add('inputError')
+        errorMsg.style.display='block'
+    }
+    else{
+        emailInput.classList.remove('inputError')
+        errorMsg.style.display='none'
+        alert('Thanks for subscribing!')
+    }
+})
+
+  </script>
 </body>
 </html>
